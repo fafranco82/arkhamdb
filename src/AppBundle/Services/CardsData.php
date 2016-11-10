@@ -112,7 +112,7 @@ class CardsData
 	
 	public function allsetsnocycledata()
 	{
-		$list_packs = $this->doctrine->getRepository('AppBundle:Pack')->findBy(array(), array("dateRelease" => "ASC", "position" => "ASC"));
+		$list_packs = $this->doctrine->getRepository('AppBundle:Pack')->findAll();
 		$packs = array();
 		foreach($list_packs as $pack) {
 			$real = count($pack->getCards());
@@ -132,7 +132,7 @@ class CardsData
 	
 	public function allsetsdata()
 	{
-		$list_cycles = $this->doctrine->getRepository('AppBundle:Cycle')->findBy(array(), array("position" => "ASC"));
+		$list_cycles = $this->doctrine->getRepository('AppBundle:Cycle')->findAll();
 		$cycles = array();
 		foreach($list_cycles as $cycle) {
 			$packs = array();
@@ -182,12 +182,15 @@ class CardsData
 		$i=0;
 
 		// construction de la requete sql
-		$qb = $this->doctrine->getRepository('AppBundle:Card')->createQueryBuilder('c');
-		$qb->leftJoin('c.pack', 'p')
+		$repo = $this->doctrine->getRepository('AppBundle:Card');
+		$qb = $repo->createQueryBuilder('c')
+			->select('c', 'p', 'y', 't', 'b', 'f', 'e')
+			->leftJoin('c.pack', 'p')
 			->leftJoin('p.cycle', 'y')
 			->leftJoin('c.type', 't')
 			->leftJoin('c.subtype', 'b')
-			->leftJoin('c.faction', 'f');
+			->leftJoin('c.faction', 'f')
+			->leftJoin('c.encounter', 'e');
 		$qb2 = null;
 		$qb3 = null;
 		if ($encounter === "encounter"){
@@ -438,8 +441,7 @@ class CardsData
 		}
 		$qb->addOrderBy('c.name');
 		$qb->addOrderBy('c.code');
-		$query = $qb->getQuery();
-		$rows = $query->getResult();
+		$rows = $repo->getResult($qb);
 
 		return $rows;
 	}

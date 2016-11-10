@@ -8,7 +8,7 @@
 <div class="row">
 
 <div class="col-md-4">
-	<h2>Browse by set</h2>
+	<h2>{{ 'search.setbrowse' | trans }}</h2>
 	{{ allsets | raw }}
 </div>
 
@@ -18,11 +18,11 @@
 <form method="GET" action="{{ path('cards_processSearchForm') }}" role="form" style="margin-bottom:2em">
 
 <fieldset>
-<legend>Name and texts</legend>
+<legend>{{ 'search.nametexts' | trans }}</legend>
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-			<label for="q">Name</label>
+			<label for="q">{{ 'card.info.name' | trans }}</label>
 			<div>
 				<input class="form-control" size="30" id="q" name="q" value="">
 			</div>
@@ -32,7 +32,7 @@
 <div class="row">
     <div class="col-sm-6">
 		<div class="form-group">
-			<label for="x">Text</label>
+			<label for="x">{{ 'card.info.text' | trans }}</label>
 			<div>
 				<input class="form-control" size="40" id="x" name="x" value="">
 			</div>
@@ -40,7 +40,7 @@
     </div>
     <div class="col-sm-6">
 		<div class="form-group">
-			<label for="a">Flavor Text</label>
+			<label for="a">{{ 'card.info.flavor' | trans }}</label>
 			<div>
 				<input class="form-control" size="30" id="a" name="a" value="">
 			</div>
@@ -49,7 +49,7 @@
 </div>
 </fieldset>
 <fieldset>
-<legend>Class</legend>
+<legend>{{ 'card.info.faction' | trans }}</legend>
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
@@ -66,15 +66,15 @@
 </div>
 </fieldset>
 <fieldset>
-<legend>Attributes</legend>
+<legend>{{ 'search.attributes' | trans }}</legend>
 
 <div class="row">
     <div class="col-sm-4">
         <div class="form-group">
-			<label for="t">Type</label>
+			<label for="t">{{ 'card.info.type' | trans }}</label>
 			<div>
 				<select class="form-control" name="t" id="t">
-					<option value="">any</option>
+					<option value="">{{ 'search.any' | trans }}</option>
 					{% for type in types %}
 					<option value="{{ type.code }}">{{ type.name }}</option>
 					{% endfor %}
@@ -84,10 +84,10 @@
 	</div>
 	<div class="col-sm-4">
         <div class="form-group">
-			<label for="b">SubType</label>
+			<label for="b">{{ 'card.info.subtype' | trans }}</label>
 			<div>
 				<select class="form-control" name="b" id="b">
-					<option value="">any</option>
+					<option value="">{{ 'search.any' | trans }}</option>
 					{% for subtype in subtypes %}
 					<option value="{{ subtype.code }}">{{ subtype.name }}</option>
 					{% endfor %}
@@ -97,10 +97,10 @@
 	</div>
     <div class="col-sm-4">
         <div class="form-group">
-			<label for="k">Traits</label>
+			<label for="k">{{ 'card.info.traits' | trans }}</label>
 			<div>
 				<select class="form-control" name="k" id="k">
-					<option value="">any</option>
+					<option value="">{{ 'search.any' | trans }}</option>
 					{% for trait in traits %}
 					<option value="{{ trait }}">{{ trait }}</option>
 					{% endfor %}
@@ -112,26 +112,26 @@
 <div class="row">
     <div class="col-sm-4">
         <div class="form-group">
-			<label for="z">Slot</label>
+			<label for="z">{{ 'card.info.slots.title' | trans}}</label>
 			<div>
 				<select class="form-control" name="z" id="z">
-					<option value="">any</option>
-					<option value="hand">One Handed</option>
-					<option value="hand x2">Two Handed</option>
-					<option value="accessory">Accessory</option>
-					<option value="ally">Ally</option>
-					<option value="arcane">One Arcane</option>
-					<option value="arcane x2">Two Arcane</option>
+					<option value="">{{ 'search.any' | trans }}</option>
+					<option value="hand">{{ 'card.info.slots.onehanded' | trans }}</option>
+					<option value="hand x2">{{ 'card.info.slots.twohanded' | trans }}</option>
+					<option value="accessory">{{ 'card.info.slots.accesory' | trans }}</option>
+					<option value="ally">{{ 'card.info.slots.ally' | trans }}</option>
+					<option value="arcane">{{ 'card.info.slots.arcane1' | trans }}</option>
+					<option value="arcane x2">{{ 'card.info.slots.arcane2' | trans }}</option>
 				</select>
 			</div>
 		</div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
-			<label for="e">Set</label>
+			<label for="e">{{ 'card.info.set' | trans }}</label>
 			<div>
 				<select class="form-control" name="e" id="e">
-					<option value="">any</option>
+					<option value="">{{ 'search.any' | trans }}</option>
 					{% for pack in packs %}
 					<option value="{{ pack.code }}">{{ pack.name }}</option>
 					{% endfor %}
@@ -141,12 +141,12 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
-			<label for="u">Unique</label>
+			<label for="u">{{ 'card.info.unique' | trans }}</label>
 			<div>
 				<select class="form-control" name="u" id="u">
-					<option value="">any</option>
-					<option value="1">Yes</option>
-					<option value="0">No</option>
+					<option value="">{{ 'search.any' | trans }}</option>
+					<option value="1">{{ 'search.yes' | trans }}</option>
+					<option value="0">{{ 'search.no' | trans }}</option>
 				</select>
 			</div>
 		</div>
@@ -155,11 +155,11 @@
 
 </fieldset>
 <fieldset>
-<legend>Numerics</legend>
+<legend>{{ 'search.numerics' | trans }}</legend>
 <div class="row">
     <div class="col-sm-3">
         <div class="form-group">
-			<label for="o">Cost</label>
+			<label for="o">{{ 'card.info.cost' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="oo" id="oo" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -173,7 +173,7 @@
 
 		<div class="col-sm-3">
 			<div class="form-group">
-				<label for="p">XP</label>
+				<label for="p">{{ 'card.info.xp' | trans }}</label>
 				<div class="row">
 					<div class="col-xs-5">
 						<select name="po" id="po" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -187,7 +187,7 @@
     
     <div class="col-sm-3">
 			<div class="form-group">
-				<label for="j">Victory</label>
+				<label for="j">{{ 'card.info.victory' | trans }}</label>
 				<div class="row">
 					<div class="col-xs-5">
 						<select name="jo" id="jo" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -201,7 +201,7 @@
     
     <div class="col-sm-3">
         <div class="form-group">
-			<label for="y">Quantity</label>
+			<label for="y">{{ 'card.info.quantity' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="yo" id="yo" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -217,7 +217,7 @@
 <div class="row">
 		<div class="col-sm-3">
         <div class="form-group">
-			<label for="w"><span class="icon-willpower"></span> Willpower</label>
+			<label for="w"><span class="icon-willpower"></span> {{ 'card.info.willpower' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="wo" id="wo" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -230,7 +230,7 @@
     </div>
     <div class="col-sm-3">
         <div class="form-group">
-			<label for="s"><span class="icon-combat"></span> Combat</label>
+			<label for="s"><span class="icon-combat"></span> {{ 'card.info.combat' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="co" id="co" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -243,7 +243,7 @@
     </div>
 		<div class="col-sm-3">
         <div class="form-group">
-			<label for="l"><span class="icon-intellect"></span> Intellect</label>
+			<label for="l"><span class="icon-intellect"></span> {{ 'card.info.intellect' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="io" id="io" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -257,7 +257,7 @@
 
     <div class="col-sm-3">
         <div class="form-group">
-			<label for="a"><span class="icon-agility"></span> Agility</label>
+			<label for="a"><span class="icon-agility"></span> {{ 'card.info.agility' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="ao" id="ao" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -273,7 +273,7 @@
 <div class="row">
 		<div class="col-sm-3">
         <div class="form-group">
-			<label for="w"><span class="icon-health"></span> Health</label>
+			<label for="w"><span class="icon-health"></span> {{ 'card.info.health' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="ho" id="ho" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -286,7 +286,7 @@
     </div>
     <div class="col-sm-3">
         <div class="form-group">
-			<label for="s"><span class="icon-sanity"></span> Sanity</label>
+			<label for="s"><span class="icon-sanity"></span> {{ 'card.info.sanity' | trans }}</label>
 			<div class="row">
                 <div class="col-xs-5">
                     <select name="so" id="so" class="form-control"><option value=":">=</option><option value="<">&lt;</option><option value=">">&gt;</option></select>
@@ -302,25 +302,25 @@
 
 </fieldset>
 <fieldset>
-<legend>Other</legend>
+<legend>{{ 'search.other' | trans }}</legend>
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-			<label for="i">Illustrator</label>
+			<label for="i">{{ 'search.previews' | trans }}</label>
 			<div>
-				<select class="form-control" name="i" id="i"><option value="">any</option>{% for illustrator in illustrators %}<option value="{{ illustrator }}">{{ illustrator }}</option>{% endfor %}</select>
+				<select class="form-control" name="i" id="i"><option value="">{{ 'search.any' | trans }}</option>{% for illustrator in illustrators %}<option value="{{ illustrator }}">{{ illustrator }}</option>{% endfor %}</select>
 			</div>
 		</div>
     </div>
 </div>
 </fieldset>
 <fieldset>
-<legend>Submit</legend>
+<legend>{{ 'search.submit' | trans }}</legend>
 <div class="row">
     <div class="form-group">
        {% include 'AppBundle:Search:searchoptions.html.twig' %}
        <div class="col-sm-3">
-	      <button class="btn btn-primary" type="submit">Search</button>
+	      <button class="btn btn-primary" type="submit">{{ 'forms.search' | trans }}</button>
        </div>
     </div>
 </div>

@@ -35,7 +35,7 @@ class ApiController extends Controller
 
 		$jsonp = $request->query->get('jsonp');
 
-		$list_packs = $this->getDoctrine()->getRepository('AppBundle:Pack')->findBy(array(), array("dateRelease" => "ASC", "position" => "ASC"));
+		$list_packs = $this->getDoctrine()->getRepository('AppBundle:Pack')->findAll();
 
 		// check the last-modified-since header
 
@@ -235,9 +235,9 @@ class ApiController extends Controller
 		$include_encounter = $request->query->get('encounter');
 		
 		if ($include_encounter){
-			$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findBy(array(), array("code" => "ASC"));
+			$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAll();
 		}else {
-			$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findBy(array("encounter" => null), array("code" => "ASC"));
+			$list_cards = $this->getDoctrine()->getRepository('AppBundle:Card')->findAllWithoutEncounter();
 		}
 
 		// check the last-modified-since header

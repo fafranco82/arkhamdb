@@ -73,13 +73,13 @@ class SearchController extends Controller
 
 		//$packs = $this->get('cards_data')->allsetsdata();
 
-		$cycles = $this->getDoctrine()->getRepository('AppBundle:Cycle')->findBy([], array("position" => "ASC"));
-		$types = $this->getDoctrine()->getRepository('AppBundle:Type')->findBy([], array("name" => "ASC"));
-		$packs = $this->getDoctrine()->getRepository('AppBundle:Pack')->findBy([], array("name" => "ASC"));
-		$subtypes = $this->getDoctrine()->getRepository('AppBundle:Subtype')->findBy([], array("name" => "ASC"));
-		$factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findBy([], array("id" => "ASC"));
+		$cycles = $this->getDoctrine()->getRepository('AppBundle:Cycle')->findAll();
+		$types = $this->getDoctrine()->getRepository('AppBundle:Type')->findAll();
+		$packs = $this->getDoctrine()->getRepository('AppBundle:Pack')->findAll();
+		$subtypes = $this->getDoctrine()->getRepository('AppBundle:Subtype')->findAll();
+		$factions = $this->getDoctrine()->getRepository('AppBundle:Faction')->findAllAndOrderByName();
 
-		$list_traits = $dbh->executeQuery("SELECT DISTINCT c.traits FROM card c WHERE c.traits != ''")->fetchAll();
+		$list_traits = $this->getDoctrine()->getRepository('AppBundle:Card')->findTraits();
 		$traits = [];
 		foreach($list_traits as $card) {
 			$subs = explode('.', $card["traits"]);
@@ -100,7 +100,7 @@ class SearchController extends Controller
 		]);
 		
 		return $this->render('AppBundle:Search:searchform.html.twig', array(
-				"pagetitle" => "Card Search",
+				"pagetitle" => $this->get("translator")->trans('search.title'),
 				"pagedescription" => "Find all the cards of the game, easily searchable.",
 				"packs" => $packs,
 				"cycles" => $cycles,
@@ -115,7 +115,7 @@ class SearchController extends Controller
 
 	public function zoomAction($card_code, Request $request)
 	{
-		$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findOneBy(array("code" => $card_code));
+		$card = $this->getDoctrine()->getRepository('AppBundle:Card')->findByCode($card_code);
 		if(!$card) throw $this->createNotFoundException('Sorry, this card is not in the database (yet?)');
 
 		$game_name = $this->container->getParameter('game_name');
@@ -335,11 +335,11 @@ class SearchController extends Controller
 			if($pagetitle == "") {
         		if(count($conditions) == 1 && count($conditions[0]) == 3 && $conditions[0][1] == ":") {
         			if($conditions[0][0] == "e") {
-        				$pack = $this->getDoctrine()->getRepository('AppBundle:Pack')->findOneBy(array("code" => $conditions[0][2]));
+        				$pack = $this->getDoctrine()->getRepository('AppBundle:Pack')->findByCode($conditions[0][2]);
         				if($pack) $pagetitle = $pack->getName();
         			}
         			if($conditions[0][0] == "c") {
-        				$cycle = $this->getDoctrine()->getRepository('AppBundle:Cycle')->findOneBy(array("code" => $conditions[0][2]));
+        				$cycle = $this->getDoctrine()->getRepository('AppBundle:Cycle')->findByCode($conditions[0][2]);
         				if($cycle) $pagetitle = $cycle->getName();
         			}
         		}
@@ -434,9 +434,9 @@ class SearchController extends Controller
 
 	public function setnavigation($card, $q, $view, $sort, $encounter)
 	{
-	    $em = $this->getDoctrine();
-	    $prev = $em->getRepository('AppBundle:Card')->findOneBy(array("pack" => $card->getPack(), "position" => $card->getPosition()-1));
-	    $next = $em->getRepository('AppBundle:Card')->findOneBy(array("pack" => $card->getPack(), "position" => $card->getPosition()+1));
+	    $repo = $this->getDoctrine()->getRepository('AppBundle:Card');
+	    $prev = $repo->findPreviousCard($card);
+	    $next = $repo->findNextCard($card);
 	    return $this->renderView('AppBundle:Search:setnavigation.html.twig', array(
 	            "prevtitle" => $prev ? $prev->getName() : "",
 	            "prevhref" => $prev ? $this->get('router')->generate('cards_zoom', array('card_code' => $prev->getCode())) : "",

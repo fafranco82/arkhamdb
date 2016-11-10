@@ -5,54 +5,54 @@
 <table class="rwd-table table table-striped table-condensed">
 <thead>
 <tr>
-<th>Name</th>
-<th>Class</th>
-<th>Cost</th>
-<th>Type</th>
-<th>Stats / Icons</th>
-<th>Traits</th>
-<th>Set</th>
+<th>{{'card.info.name' | trans}}</th>
+<th>{{'card.info.class' | trans}}</th>
+<th>{{'card.info.cost' | trans}}</th>
+<th>{{'card.info.type' | trans}}</th>
+<th>{{'card.info.statsicons' | trans}}</th>
+<th>{{'card.info.traits' | trans}}</th>
+<th>{{'card.info.set' | trans}}</th>
 </tr>
 </thead>
 {% for i in 0..cards|length-1 %}
 <tr class="{% if i%2==0 %}even{% else %}odd{% endif %}">
    {% set card = cards[i] %}
-	<td data-th="Name">
+	<td data-th="{{'card.info.name' | trans}}">
 		<span class="icon icon-{{ card.type_code}} fg-{{ card.faction_code }}"></span>
 		<a href="{{ card.url }}" class="card-tip{% if card.available == false %} card-preview{% endif %}" data-code="{{ card.code }}">
 		{{ card.name }}</a>
 		{% if card.xp %}<span class="xp-{{ card.xp }}"> ({{ card.xp }})</span>{% endif %}
 	</td>
-	<td data-th="Faction" class="fg-{{ card.faction_code }}"><span class="icon-{{card.faction_code}}"></span> {{ card.faction_name }}</td>
-	<td data-th="Cost">{{ card.cost }}</td>
-	<td data-th="Type" >{{ card.type_name }}</td>
-	<td data-th="Stats">
+	<td data-th="{{'card.info.class' | trans}}" class="fg-{{ card.faction_code }}"><span class="icon-{{card.faction_code}}"></span> {{ card.faction_name }}</td>
+	<td data-th="{{'card.info.cost' | trans}}">{{ card.cost }}</td>
+	<td data-th="{{'card.info.type' | trans}}" >{{ card.type_name }}</td>
+	<td data-th="{{'card.info.statsicons' | trans}}">
 	{% if card.type_code == "investigator" %}
-	{% if card.skill_willpower %}{{ card.skill_willpower }}<span title="Willpower" class="icon icon-willpower color-willpower"></span>{% endif %}
-	{% if card.skill_intellect %}{{ card.skill_intellect }}<span title="Intellect" class="icon icon-intellect color-intellect"></span>{% endif %}
-	{% if card.skill_combat %}{{ card.skill_combat }}<span title="Combat" class="icon icon-combat color-combat"></span>{% endif %}
-	{% if card.skill_agility %}{{ card.skill_agility }}<span title="Agility" class="icon icon-agility color-agility"></span>{% endif %}
+	{% if card.skill_willpower %}{{ card.skill_willpower }}<span title="{{'card.info.willpower' | trans}}" class="icon icon-willpower color-willpower"></span>{% endif %}
+	{% if card.skill_intellect %}{{ card.skill_intellect }}<span title="{{'card.info.intellect' | trans}}" class="icon icon-intellect color-intellect"></span>{% endif %}
+	{% if card.skill_combat %}{{ card.skill_combat }}<span title="{{'card.info.combat' | trans}}" class="icon icon-combat color-combat"></span>{% endif %}
+	{% if card.skill_agility %}{{ card.skill_agility }}<span title="{{'card.info.agility' | trans}}" class="icon icon-agility color-agility"></span>{% endif %}
 	{% elseif card.type_code == "enemy" %}
-	{% if card.enemy_fight %}{{ card.enemy_fight }}<span title="Combat" class="icon icon-strength color-strength"></span>{% endif %}
-	{% if card.health %}Health:{{ card.health }}<span title="Health" class="icon icon-health color-health"></span>{% endif %}
-	{% if card.enemy_evade %}{{ card.enemy_evade }}<span title="Agility" class="icon icon-agility color-agility"></span>{% endif %}
+	{% if card.enemy_fight %}{{ card.enemy_fight }}<span title="{{'card.info.combat' | trans}}" class="icon icon-strength color-strength"></span>{% endif %}
+	{% if card.health %}{{'card.info.health' | trans}}: {{ card.health }}<span title="{{'card.info.health' | trans}}" class="icon icon-health color-health"></span>{% endif %}
+	{% if card.enemy_evade %}{{ card.enemy_evade }}<span title="{{'card.info.agility' | trans}}" class="icon icon-agility color-agility"></span>{% endif %}
 	{% elseif card.type_code == "location" %}
-	{% if card.shroud %}Shroud: {{ card.shroud }}<span title="Shroud" class="icon icon-shroud color-shroud"></span>{% endif %}
-	{% if card.clues %}Clues: {{ card.clues }}<span title="Clues" class="icon icon-clues color-clues"></span>{% endif %}	
+	{% if card.shroud %}{{'card.info.shroud' | trans}}: {{ card.shroud }}<span title="{{'card.info.shroud' | trans}}" class="icon icon-shroud color-shroud"></span>{% endif %}
+	{% if card.clues %}{{'card.info.clues' | trans}}: {{ card.clues }}<span title="{{'card.info.clues' | trans}}" class="icon icon-clues color-clues"></span>{% endif %}	
 	{% elseif card.type_code == "agenda" %}
-	{% if card.doom %}Doom: {{ card.doom }}<span title="Doom" class="icon icon-doom color-doom"></span>{% endif %}
+	{% if card.doom %}{{'card.info.doom' | trans}}: {{ card.doom }}<span title="{{'card.info.doom' | trans}}" class="icon icon-doom color-doom"></span>{% endif %}
 	{% elseif card.type_code == "act" %}
-	{% if card.clues %}Clues: {{ card.clues }}<span title="Clues" class="icon icon-clues color-clues"></span>{% endif %}	
+	{% if card.clues %}{{'card.info.clues' | trans}}: {{ card.clues }}<span title="{{'card.info.clues' | trans}}" class="icon icon-clues color-clues"></span>{% endif %}	
 	{% else %}
-	{% if card.skill_willpower %}{% for i in 1..card.skill_willpower %}<span title="Willpower" class="icon icon-willpower color-willpower"></span>{% endfor %}{% endif %}
-	{% if card.skill_intellect %}{% for i in 1..card.skill_intellect %}<span title="Intellect" class="icon icon-intellect color-intellect"></span>{% endfor %}{% endif %}
-	{% if card.skill_combat %}{% for i in 1..card.skill_combat %}<span title="Combat" class="icon icon-combat color-combat"></span>{% endfor %}{% endif %}
-	{% if card.skill_agility %}{% for i in 1..card.skill_agility %}<span title="Agility" class="icon icon-agility color-agility"></span>{% endfor %}{% endif %}
-	{% if card.skill_wild %}{% for i in 1..card.skill_wild %}<span title="Wild" class="icon icon-wild color-wild"></span>{% endfor %}{% endif %}
+	{% if card.skill_willpower %}{% for i in 1..card.skill_willpower %}<span title="{{'card.info.willpower' | trans}}" class="icon icon-willpower color-willpower"></span>{% endfor %}{% endif %}
+	{% if card.skill_intellect %}{% for i in 1..card.skill_intellect %}<span title="{{'card.info.intellect' | trans}}" class="icon icon-intellect color-intellect"></span>{% endfor %}{% endif %}
+	{% if card.skill_combat %}{% for i in 1..card.skill_combat %}<span title="{{'card.info.combat' | trans}}" class="icon icon-combat color-combat"></span>{% endfor %}{% endif %}
+	{% if card.skill_agility %}{% for i in 1..card.skill_agility %}<span title="{{'card.info.agility' | trans}}" class="icon icon-agility color-agility"></span>{% endfor %}{% endif %}
+	{% if card.skill_wild %}{% for i in 1..card.skill_wild %}<span title="{{'card.info.wild' | trans}}" class="icon icon-wild color-wild"></span>{% endfor %}{% endif %}
 	{% endif %}
 	</td>
-	<td data-th="Traits">{{ card.traits }}</td>
-	<td data-th="Set">{{ card.pack_name }} {{ card.position }}{% if card.encounter_code is defined %} - {{card.encounter_name}} {% if card.encounter_position %}{{card.encounter_position}}{% if card.quantity > 1 %}-{{card.encounter_position+card.quantity-1}}{% endif %}{% endif %}{% endif %}</td>
+	<td data-th="{{'card.info.traits' | trans}}">{{ card.traits }}</td>
+	<td data-th="{{'card.info.set' | trans}}">{{ card.pack_name }} {{ card.position }}{% if card.encounter_code is defined %} - {{card.encounter_name}} {% if card.encounter_position %}{{card.encounter_position}}{% if card.quantity > 1 %}-{{card.encounter_position+card.quantity-1}}{% endif %}{% endif %}{% endif %}</td>
 </tr>
 {% endfor %}
 </table>

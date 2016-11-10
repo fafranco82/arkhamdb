@@ -1,6 +1,10 @@
 AppBundle\Entity\Campaign:
     type: entity
     table: campaign
+    repositoryClass: AppBundle\Repository\CampaignRepository
+    gedmo:
+        translation:
+            locale: locale
     manyToOne:
         cycle:
             targetEntity: Cycle
@@ -27,6 +31,8 @@ AppBundle\Entity\Campaign:
             type: string
             length: 1024
             nullable: false
+            gedmo:
+                - translatable
         size:
             type: smallint
             nullable: false

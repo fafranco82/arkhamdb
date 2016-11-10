@@ -6,13 +6,13 @@
 			{% if card.back_name %}
 			<div class="panel-heading border-{{ card.faction_code }} bg-{{ card.faction_code }}">
 				<h3 class="panel-title">
-					{{card.back_name}} - Back
+					{{card.back_name}} - {{'card.info.back' | trans}}
 				</h3>
   		</div>
   		{% else %}
   		<div class="panel-heading border-{{ card.faction_code }} bg-{{ card.faction_code }}">
 				<h3 class="panel-title">
-					{{card.name}} - Back
+					{{card.name}} - {{'card.info.back' | trans}}
 				</h3>
   		</div>
   		{% endif %}

@@ -1,0 +1,122 @@
+noimage: No image
+
+nav:
+  mydecks: My decks
+  decklists: Decklists
+  cards: Cards
+  reviews: Reviews
+  rules: Rules
+
+forms:
+  save: Save
+  edit: Edit
+  publish: Publish
+  delete: Delete
+  cancel: Cancel
+  add: Add
+  remove: Remove
+  import: Import
+  upload: Upload
+  reset: Reset
+  copy: Copy
+  clone: Clone
+  close: Close
+  print: Print
+  download: Download
+  search: Search
+
+search:
+  setbrowse: Browse by set
+  title: Card Search
+  nametexts: Name and texts
+  attributes: Attributes
+  numerics: Numerics
+  other: Other
+  previews: Previews
+  submit: Submit
+  any: any
+  yes: Yes
+  no: No
+  only: Only
+  sort:
+    name: Sort by Name
+    set: Sort by Set
+    faction: Sort by Class
+    type: Sort by Type
+    cost: Sort by Cost
+  view:
+    list: View as a Checklist
+    spoiler: View as a Spoiler
+    card: View as Full Cards
+    scan: View as Scans Only
+    short: View as Simple List
+    cards:
+        player: Only Player Cards
+        encounter: Only Encounter Cards
+        all: All Cards
+
+pag:
+  cardscount: "{0} There is no cards | {1} One card | ]1,Inf] %count% cards"
+
+card:
+  reviews:
+    title: Reviews
+    none: No review yet for this card.
+    unreleased: Reviews will be enabled for this card when it is officially released.
+    like: Like that review
+    edit: Edit review
+    write: Write a review
+    hint: "Write your analysis of the card, in at least %min% characters. You can write a number of card reviews equal to your reputation. This is not a place for questions or comments. Type # to enter a card name. Type $ to enter a symbol."
+    submit: Submit preview
+    posted: Your review has been posted. It will appear on the site in a few minutes.
+    comments:
+      add: Add a comment
+      hint: Your comment
+      post: Post
+      posted: Your comment has been posted. It will appear on the site in a few minutes.
+    alerts:
+      minimum: Your review must at least %min% characters long.
+  info:
+    name: Name
+    class: Class
+    faction: Class
+    cost: Cost
+    xp: XP
+    type: Type
+    subtype: Subtype
+    statsicons: Stats/Icons
+    traits: Traits
+    set: Set
+    text: Text
+    flavor: Flavor Text
+    willpower: Willpower
+    intellect: Intellect
+    combat: Combat
+    agility: Agility
+    health: Health
+    sanity: Sanity
+    shroud: Shroud
+    clues: Clues
+    doom: Doom
+    wild: Wild
+    stage: Stage %stage%
+    fight: Fight
+    evade: Evade
+    damage: Damage
+    horror: Horror
+    perinvestigator: Per investigator
+    icons: Test Icons
+    victory: Victory
+    victorypoints: Victory %points%
+    unique: Unique
+    back: Back
+    slot: Slot
+    slots: 
+      title: Slots
+      onehanded: One Handed
+      twohanded: Two Handed
+      accesory: Accessory
+      ally: Ally
+      arcane1: One Arcane
+      arcane2: Two Arcane
+    quantity: Quantity

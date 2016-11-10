@@ -7,60 +7,60 @@
 {% if card.type_code == 'asset' or card.type_code == 'event' or card.xp %}
 <div class="card-props">
 	{% if card.type_code == 'asset' or card.type_code == 'event'%}
-	Cost: {{ macros.integer_or_x(card.cost) }}.
+	{{'card.info.cost' | trans}}: {{ macros.integer_or_x(card.cost) }}.
 	{% endif %}
 	{% if card.xp %}
-	XP: {{ card.xp }}.
+	{{'card.info.xp' | trans}}: {{ card.xp }}.
 	{% endif %}
 </div>
 {% endif %}
 
 {% if card.type_code == 'investigator' %}
 <div class="card-props">
-	Willpower: {{ macros.integer_or_x(card.skill_willpower) }}.
-	Intellect: {{ macros.integer_or_x(card.skill_intellect) }}.
-	Combat: {{ macros.integer_or_x(card.skill_combat) }}.
-	Agility: {{ macros.integer_or_x(card.skill_agility) }}.
+	{{'card.info.willpower' | trans}}: {{ macros.integer_or_x(card.skill_willpower) }}.
+	{{'card.info.intellect' | trans}}: {{ macros.integer_or_x(card.skill_intellect) }}.
+	{{'card.info.combat' | trans}}: {{ macros.integer_or_x(card.skill_combat) }}.
+	{{'card.info.agility' | trans}}: {{ macros.integer_or_x(card.skill_agility) }}.
 </div>
 {% if card.health or card.sanity%}
 	<div>
-	Health: {{ macros.integer_or_x(card.health) }}.
-	Sanity: {{ macros.integer_or_x(card.sanity) }}.
+	{{'card.info.health' | trans}}: {{ macros.integer_or_x(card.health) }}.
+	{{'card.info.sanity' | trans}}: {{ macros.integer_or_x(card.sanity) }}.
 	</div>
 {% endif %}
 {% elseif card.type_code == 'enemy' %}
 	<div>
-	Fight: {{ macros.integer_or_x(card.enemy_fight) }}.
-	Health: {{ macros.integer_or_x(card.health) }}.
-	Evade: {{ macros.integer_or_x(card.enemy_evade) }}.
+	{{'card.info.fight' | trans}}: {{ macros.integer_or_x(card.enemy_fight) }}.
+	{{'card.info.health' | trans}}: {{ macros.integer_or_x(card.health) }}.
+	{{'card.info.evade' | trans}}: {{ macros.integer_or_x(card.enemy_evade) }}.
 	</div>
 	<div>
-	Damage: {{ macros.integer_or_x(card.enemy_damage) }}.
-	Horror: {{ macros.integer_or_x(card.enemy_horror) }}.
+	{{'card.info.damage' | trans}}: {{ macros.integer_or_x(card.enemy_damage) }}.
+	{{'card.info.horror' | trans}}: {{ macros.integer_or_x(card.enemy_horror) }}.
 	</div>
 {% else %}
 	{% if card.doom or card.clues is not null or card.shroud %}
 	<div>
-	{% if card.doom %}<span title="Doom" class="icon icon-doom color-doom"></span>Doom: {{card.doom}}.{% endif %}
-	{% if card.shroud %}<span title="Shroud" class="icon icon-shroud color-shroud"></span>Shroud: {{card.shroud}}.{% endif %}
-	{% if card.clues %}<span title="Clues" class="icon icon-clues color-clues"></span>Clues: {{card.clues}} <span class="icon icon-per_investigator" title="Per Investigator"></span>.{% endif %}
-	{% if card.clues == 0 %}<span title="Clues" class="icon icon-clues color-clues"></span>Clues: {{card.clues}}{% endif %}
+	{% if card.doom %}<span title="{{'card.info.doom' | trans}}" class="icon icon-doom color-doom"></span>{{'card.info.doom' | trans}}: {{card.doom}}.{% endif %}
+	{% if card.shroud %}<span title="{{'card.info.shroud' | trans}}" class="icon icon-shroud color-shroud"></span>{{'card.info.shroud' | trans}}: {{card.shroud}}.{% endif %}
+	{% if card.clues %}<span title="{{'card.info.clues' | trans}}" class="icon icon-clues color-clues"></span>{{'card.info.clues' | trans}}: {{card.clues}} <span class="icon icon-per_investigator" title="{{'card.info.perinvestigator'}}"></span>.{% endif %}
+	{% if card.clues == 0 %}<span title="{{'card.info.clues' | trans}}" class="icon icon-clues color-clues"></span>{{'card.info.clues' | trans}}: {{card.clues}}{% endif %}
 	</div>
 	{% endif %}
 	{% if card.skill_willpower or card.skill_intellect or card.skill_combat or card.skill_agility or card.skill_wild %}
 	<div>
-	Test Icons:
-	{% if card.skill_willpower %}{% for i in 1..card.skill_willpower %}<span title="Willpower" class="icon icon-willpower color-willpower"></span>{% endfor %}{% endif %}
-	{% if card.skill_intellect %}{% for i in 1..card.skill_intellect %}<span title="Intellect" class="icon icon-intellect color-intellect"></span>{% endfor %}{% endif %}
-	{% if card.skill_combat %}{% for i in 1..card.skill_combat %}<span title="Combat" class="icon icon-combat color-combat"></span>{% endfor %}{% endif %}
-	{% if card.skill_agility %}{% for i in 1..card.skill_agility %}<span title="Agility" class="icon icon-agility color-agility"></span>{% endfor %}{% endif %}
-	{% if card.skill_wild %}{% for i in 1..card.skill_wild %}<span title="Wild" class="icon icon-wild color-wild"></span>{% endfor %}{% endif %}
+	{{'card.info.icons' | trans}}:
+	{% if card.skill_willpower %}{% for i in 1..card.skill_willpower %}<span title="{{'card.info.willpower' | trans}}" class="icon icon-willpower color-willpower"></span>{% endfor %}{% endif %}
+	{% if card.skill_intellect %}{% for i in 1..card.skill_intellect %}<span title="{{'card.info.intellect' | trans}}" class="icon icon-intellect color-intellect"></span>{% endfor %}{% endif %}
+	{% if card.skill_combat %}{% for i in 1..card.skill_combat %}<span title="{{'card.info.combat' | trans}}" class="icon icon-combat color-combat"></span>{% endfor %}{% endif %}
+	{% if card.skill_agility %}{% for i in 1..card.skill_agility %}<span title="{{'card.info.agility' | trans}}" class="icon icon-agility color-agility"></span>{% endfor %}{% endif %}
+	{% if card.skill_wild %}{% for i in 1..card.skill_wild %}<span title="{{'card.info.wild' | trans}}" class="icon icon-wild color-wild"></span>{% endfor %}{% endif %}
 	</div>
 	{% endif %}
 	{% if card.health or card.sanity%}
 	<div>
-	Health: {{ macros.integer_or_x(card.health) }}.
-	Sanity: {{ macros.integer_or_x(card.sanity) }}.
+	{{'card.info.health' | trans}}: {{ macros.integer_or_x(card.health) }}.
+	{{'card.info.sanity' | trans}}: {{ macros.integer_or_x(card.sanity) }}.
 	</div>
 	{% endif %}
 {% endif %}

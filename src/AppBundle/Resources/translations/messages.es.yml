@@ -1,0 +1,123 @@
+noimage: Sin imagen
+
+nav:
+  mydecks: Mis mazos
+  decklists: Mazos
+  cards: Cartas
+  reviews: Reseñas
+  rules: Reglas
+
+forms:
+  save: Guardar
+  edit: Editar
+  publish: Publicar
+  delete: Borrar
+  cancel: Cancelar
+  add: Añadir
+  remove: Eliminar
+  import: Importar
+  upload: Subir
+  reset: Limpiar
+  copy: Copiar
+  clone: Clonar
+  close: Cerrar
+  print: Imprimir
+  download: Descargar
+  search: Buscar
+
+search:
+  label: Buscar
+  setbrowse: Explorar por set
+  title: Búsqueda de cartas
+  nametexts: Nombre y textos
+  attributes: Atributos
+  numerics: Numéricos
+  other: Otros
+  previews: Adelantos
+  submit: Búsqueda
+  any: cualquiera
+  yes: Sí
+  no: No
+  only: Sólo
+  sort:
+    name: Ordenar por nombre
+    set: Ordenar por set
+    faction: Ordenar por clase
+    type: Ordenar por tipo
+    cost: Ordenar por coste
+  view:
+    list: Ver como listado
+    spoiler: Ver como spoilers
+    card: Ver carta completa
+    scan: Ver solo imágenes
+    short: Ver como lista simple
+    cards:
+      player: Sólo cartas de jugador
+      encounter: Sólo cartas de encuentro
+      all: Todas las cartas
+
+pag:
+  cardscount: "{0} No hay cartas | {1} Una carta | ]1,Inf] %count% cartas"      
+
+card:
+  reviews: 
+    title: Reseñas
+    none: Aún no hay reseñas para esta carta.
+    unreleased: Las reseñas para esta carta se habilitarán cuando ésta sea publicada oficialmente.
+    like: Me gusta esta reseña
+    edit: Editar reseña
+    write: Escribir una reseña
+    hint: "Escribe tu análisis de esta carta en al menos %min% caracteres. Puedes escribir tantas reseñas como tu reputación. Éste no es lugar para preguntas o comentarios. Escribe # para introducir el nombre de una carta. Escribe $ para introducir un símbolo."
+    submit: Enviar reseña
+    posted: Tu reseña ha sido enviada. Aparacerá dentro de unos minutos.
+    comments:
+      add: Añadir un comentario
+      hint: Tu comentario
+      post: Enviar
+      posted: Tu comentario se ha enviado. Aparecerá en unos pocos minutos.
+    alerts:
+      minimum: Tu reseña debe tener al menos %min% caracteres.
+  info:
+    name: Nombre
+    class: Clase
+    faction: Clase
+    cost: Coste
+    xp: Nivel
+    type: Tipo
+    subtype: Subtipo
+    statsicons: Hab. / Iconos
+    traits: Rasgos
+    set: Set
+    text: Texto
+    flavor: Texto de ambientación
+    willpower: Voluntad
+    intellect: Intelecto
+    combat: Combate
+    agility: Agilidad
+    health: Salud
+    sanity: Cordura
+    shroud: Velo
+    clues: Pistas
+    doom: Perdición
+    wild: Comodín
+    stage: Fase %stage%
+    fight: Combate
+    evade: Evasión
+    damage: Daño
+    horror: Horror
+    perinvestigator: Por investigador
+    icons: Iconos
+    victory: Victoria
+    victorypoints: Victoria %points%
+    unique: Único
+    back: Reverso
+    slot: Espacio
+    slots: 
+      title: Espacios
+      onehanded: Una manos
+      twohanded: Dos manos
+      accesory: Accesorio
+      ally: Aliado
+      arcane1: Un arcano
+      arcane2: Dos arcanos
+    quantity: Cantidad

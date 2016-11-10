@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-class Encounter implements \Serializable
+class Encounter implements \Gedmo\Translatable\Translatable, \Serializable
 {
 	public function serialize() {
 		return [
@@ -142,5 +142,15 @@ class Encounter implements \Serializable
     public function getCards()
     {
         return $this->cards;
+    }
+    
+    /*
+    * I18N vars
+    */
+    private $locale = 'en';
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }

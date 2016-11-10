@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-class Scenario implements \Serializable
+class Scenario implements \Gedmo\Translatable\Translatable, \Serializable
 {
 	public function serialize() {
 		return [
@@ -203,5 +203,15 @@ class Scenario implements \Serializable
     public function getEncounters()
     {
         return $this->encounters;
+    }
+    
+    /*
+    * I18N vars
+    */
+    private $locale = 'en';
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }

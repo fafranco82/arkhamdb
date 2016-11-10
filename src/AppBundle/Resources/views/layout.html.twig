@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
   <head>
     <title>{{ pagetitle|default('Deckbuilder') }} &middot; ArkhamDB</title>
     <meta charset="utf-8">
@@ -7,6 +7,11 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png" />
+    {% if app.request.locale != "en" and app.request.attributes.get('_route') != "" %}
+      {% set _route_params = app.request.attributes.get('_route_params')|default({}) %}
+      {% set _get_params = app.request.query.all()|default({}) %}
+      <link rel="canonical" href="{{ url(app.request.attributes.get('_route'), _route_params|merge(_get_params)|merge({'_locale': 'en'})) }}"/>
+    {% endif %}
     {% if pagedescription is defined %}<meta name="description" content="{{ pagedescription }}">{% endif %}
 
     <link href='https://fonts.googleapis.com/css?family=Amiri:400,400italic,700,700italic|Julius+Sans+One|Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
@@ -17,6 +22,7 @@
     	'bundles/app/css/bootstrap.css'
     	'bundles/app/css/style.css'
     	'bundles/app/css/icons.css'
+      'bundles/app/css/languages.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
@@ -45,11 +51,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{{ path('decks_list') }}">My Decks</a></li>
-            <li><a href="{{ path('decklists_list') }}">Decklists</a></li>
-            <li><a href="{{ path('cards_search') }}">Cards</a></li>
-            <li class="hidden-sm"><a href="{{ path('card_reviews_list') }}">Reviews</a></li>
-            <li class="hidden-sm"><a href="{{ path('rules') }}">Rules</a></li>
+            <li><a href="{{ path('decks_list') }}">{{ 'nav.mydecks' | trans}}</a></li>
+            <li><a href="{{ path('decklists_list') }}">{{ 'nav.decklists' | trans}}</a></li>
+            <li><a href="{{ path('cards_search') }}">{{ 'nav.cards' | trans}}</a></li>
+            <li class="hidden-sm"><a href="{{ path('card_reviews_list') }}">{{ 'nav.reviews' | trans}}</a></li>
+            <li class="hidden-sm"><a href="{{ path('rules') }}">{{ 'nav.rules' | trans}}</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs hidden-lg">
@@ -62,6 +68,25 @@
             </li>
             <li id="login">
                 <a href="#" class="disabled"><span class="fa fa-user"></span></a>
+            </li>
+            <!-- locale selection -->
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown">
+                <span class="lang-sm" lang="{{ app.request.locale | default(default_locale) }}"></span>
+                <span class="caret">
+              </a>
+              <ul class="dropdown-menu">
+                {% for supported_locale in supported_locales %}
+                  {% set _route = app.request.attributes.get('_route') %}
+                  {% set _route_params = app.request.attributes.get('_route_params')|default({})|merge(app.request.query.all) %}
+                  {% set _get_params = app.request.attributes.get('_get_params')|default({}) %}
+                  <li>
+                    <a href="{{ path(_route, _route_params|merge(_get_params)|merge({'_locale': supported_locale})) }}">
+                      <span lang="{{ supported_locale }}" class="lang-sm lang-lbl lang-lbl-full"></span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
             </li>
           </ul>
           <form class="navbar-form navbar-right visible-lg-block visible-xs-block external" action="{{ path('cards_find') }}" target="_blank">
@@ -114,18 +139,25 @@
     <script src="{{ asset('/bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
+    {% javascripts
+        'bundles/bazingajstranslation/js/translator.min.js'
+        'js/translations/config.js'
+        'js/translations/*/*.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.1.1/jquery.qtip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.textcomplete/0.2.2/jquery.textcomplete.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.1.7/highcharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.9.0/js/bootstrap-markdown.min.js"></script>
     <script type="text/javascript">
-	var app = {};
-    moment.locale('en-US');
+    var app = {};
+    moment.locale('{{ app.request.locale }}');
     $(function() {
     {% for flashMessage in app.session.flashbag.get('notice') %}
     	app.ui.insert_alert_message('success', {{ flashMessage|json_encode|raw }});

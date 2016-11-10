@@ -2,5 +2,5 @@
 	{{ card.text|raw }}
 </div>
 {% if card.victory %}
-	<div class="victory">Victory {{card.victory}}.</div>
+	<div class="victory">{{'card.info.victorypoints' | trans({'%points%': card.victory})}}.</div>
 {% endif %}

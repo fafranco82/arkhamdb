@@ -57,25 +57,25 @@ format.info = function info(card) {
 	var text = '';
 	switch(card.type_code) {
 		case 'agenda':
-			text += '<div>Doom: '+format.fancy_int(card.doom)+'.</div>';
+			text += '<div>'+Translator.trans('card.info.doom')+': '+format.fancy_int(card.doom)+'.</div>';
 			break;
 		case 'act':
-			text += '<div>Clues: '+format.fancy_int(card.clues)+'.</div>';
+			text += '<div>'+Translator.trans('card.info.clues')+': '+format.fancy_int(card.clues)+'.</div>';
 			break;
 		case 'enemy':
-			text += '<div>Fight: '+format.fancy_int(card.enemy_fight)+'. Health: '+format.fancy_int(card.health)+'. Evade: '+format.fancy_int(card.enemy_evade)+'.</div>';
-			text += '<div>Damage: '+format.fancy_int(card.enemy_damage)+'. Horror: '+format.fancy_int(card.enemy_horror)+'.</div>';
+			text += '<div>'+Translator.trans('card.info.fight')+': '+format.fancy_int(card.enemy_fight)+'. '+Translator.trans('card.info.health')+': '+format.fancy_int(card.health)+'. '+Translator.trans('card.info.evade')+': '+format.fancy_int(card.enemy_evade)+'.</div>';
+			text += '<div>'+Translator.trans('card.info.damage')+': '+format.fancy_int(card.enemy_damage)+'. '+Translator.trans('card.info.horror')+': '+format.fancy_int(card.enemy_horror)+'.</div>';
 			break;
 		case 'investigator':
-			text += '<div>Willpower: '+card.skill_willpower+'. Intellect: '+card.skill_intellect+'. Combat: '+card.skill_combat+'. Agility: '+card.skill_agility+'.</div>';
-			text += '<div>Health: '+card.health+'. Sanity: '+card.sanity+'.</div>'
+			text += '<div>'+Translator.trans('card.info.willpower')+': '+card.skill_willpower+'. '+Translator.trans('card.info.intellect')+': '+card.skill_intellect+'. '+Translator.trans('card.info.combat')+': '+card.skill_combat+'. '+Translator.trans('card.info.agility')+': '+card.skill_agility+'.</div>';
+			text += '<div>'+Translator.trans('card.info.health')+': '+card.health+'. '+Translator.trans('card.info.sanity')+': '+card.sanity+'.</div>'
 			break;	
 		case 'asset':
 		case 'event':
-			text += '<div>Cost: '+format.fancy_int(card.cost)+'. '+(card.xp ? "XP: "+card.xp+"." : "")+'</div>';
+			text += '<div>'+Translator.trans('card.info.cost')+': '+format.fancy_int(card.cost)+'. '+(card.xp ? Translator.trans('card.info.xp')+': '+card.xp+"." : "")+'</div>';
 
 			if (card.skill_willpower || card.skill_intellect || card.skill_combat || card.skill_agility || card.skill_wild){
-				text += '<div>Test Icons: ';
+				text += '<div>'+Translator.trans('card.info.icons')+': ';
 				if (card.skill_willpower){
 					text += Array(card.skill_willpower+1).join('<span class="icon icon-willpower color-willpower"></span>');
 				}
@@ -94,15 +94,15 @@ format.info = function info(card) {
 				text += '</div>';
 			}
 			if (card.health || card.sanity){
-				text += '<div>Health: '+format.fancy_int(card.health)+'. Sanity: '+format.fancy_int(card.sanity)+'.</div>';
+				text += '<div>'+Translator.trans('card.info.health')+': '+format.fancy_int(card.health)+'. '+Translator.trans('card.info.sanity')+': '+format.fancy_int(card.sanity)+'.</div>';
 			}
 			break;
 		case 'skill':
 			if (card.xp){
-				text += '<div>'+(card.xp ? "XP: "+card.xp+"." : "")+'</div>';
+				text += '<div>'+(card.xp ? Translator.trans('card.info.xp')+': '+card.xp+"." : "")+'</div>';
 			}
 			if (card.skill_willpower || card.skill_intellect || card.skill_combat || card.skill_agility || card.skill_wild){
-				text += '<div>Test Icons: ';
+				text += '<div>'+Translator.trans('card.info.icons')+': ';
 				if (card.skill_willpower){
 					text += Array(card.skill_willpower+1).join('<span class="icon icon-willpower color-willpower"></span>');
 				}

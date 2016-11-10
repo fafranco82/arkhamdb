@@ -11,7 +11,7 @@ function display_card_on_element(card, element, event) {
 		content = image
 		+ '<h4 class="card-name">' + app.format.name(card) + '</h4>'
 		+ '<div class="card-faction">' + app.format.faction(card) + '</div>'
-		+ '<div><span class="card-type">'+card.type_name+((card.type_code == "agenda" || card.type_code == "act") ? '. Stage '+card.stage : '')+(card.slot ? '. '+card.slot : "")+(card.subtype_name ? '. '+card.subtype_name : "")+'</span></div>'
+		+ '<div><span class="card-type">'+card.type_name+((card.type_code == "agenda" || card.type_code == "act") ? '. '+Translator.trans('card.info.stage', {stage: card.stage}) : '')+(card.slot ? '. '+card.slot : "")+(card.subtype_name ? '. '+card.subtype_name : "")+'</span></div>'
 		+ '<div class="card-traits">' + app.format.traits(card) + '</div>'
 		+ '<div class="card-info">' + app.format.info(card) + '</div>'
 		;
